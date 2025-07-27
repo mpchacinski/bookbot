@@ -1,8 +1,14 @@
 from stats import count_words, count_chars, count_chars_sorted
+import sys
 
-file_name = "books/frankenstein.txt"
 
 def main():
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    file_name = sys.argv[1]
+
     frank_text = get_book_text(file_name)
     num_words = count_words(frank_text)
     char_count = count_chars(frank_text) 
@@ -16,6 +22,7 @@ def main():
     for el in char_count_sorted:
         if el["letter"].isalpha():
             print(f"{el["letter"]}: {el["num"]}")
+    print("============= END ===============")
 
 
 def get_book_text(filepath):
